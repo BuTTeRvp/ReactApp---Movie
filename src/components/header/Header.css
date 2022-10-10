@@ -1,5 +1,7 @@
 .header_title {
-  margin-bottom: 100px;
+  padding-top: 10px;
+  margin-bottom: 50px;
+  font-size: x-large;
 }
 
 .movie__list {
@@ -15,4 +17,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+h1 {
+  font-size: larger;
 }

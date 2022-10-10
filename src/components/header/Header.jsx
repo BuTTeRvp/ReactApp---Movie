@@ -6,29 +6,54 @@ export default function Header() {
   const [pageNumber, setPageNumber] = useState(1);
   const [movieList, setMovieList] = useState([]);
   const [search, setSearch] = useState("");
+  const[rating, setRating] = useState("");
 
   useEffect(() => {
-    fetch(`https://movie-task.vercel.app/api/popular?page=${pageNumber}`)
+    const getMovieList = async ()=>{
+      await fetch(`https://movie-task.vercel.app/api/popular?page=${pageNumber}`)
       .then((res) => res.json())
       .then((data) => setMovieList(data.data.results));
-  }, [pageNumber]);
+    }
+    getMovieList();
+
+  }, [pageNumber, rating]);
+
   console.log(movieList);
 
-  function handelSubmit(e){
+  function handelSearch(e) {
     e.preventDefault();
-    fetch(`https://movie-task.vercel.app/api/search?page=${pageNumber}&query=${search}`)
-    .then((res)=>res.json())
-    .then((data)=>setMovieList(data.data.results))
+    fetch(
+      `https://movie-task.vercel.app/api/search?page=${pageNumber}&query=${search}`
+    )
+      .then((res) => res.json())
+      .then((data) => setMovieList(data.data.results));
+  }
 
+
+  function handelFilter(e){
+    e.preventDefault();
+    console.log(rating)
+    // console.log(movieList.map((movie)=> console.log(movie.release_date.slice(0,4))))
+    let newList = movieList.filter((movie)=> movie.vote_average >= rating)
+      setMovieList(newList)
   }
 
   return (
     <div className="">
       <div className="header_title">
-        Popular
-        <button onClick={() => setPageNumber(pageNumber - 1)}>PrevPage</button>
-        <button onClick={() => setPageNumber(pageNumber + 1)}>NextPage</button>
-        <form onSubmit={(e)=>handelSubmit(e)}>
+        <h1>Popular Page - {pageNumber}</h1>
+        </div>
+        <div style={{display: "flex", gap:"2rem", marginLeft:"40px" , marginBottom:"10px"}}>
+        <div className="btn-container">
+          <button onClick={() => setPageNumber(pageNumber - 1)}>
+            PrevPage
+          </button>
+          <button onClick={() => setPageNumber(pageNumber + 1)}>
+            NextPage
+          </button>
+        </div>
+
+        <form onSubmit={(e) => handelSearch(e)}>
           <input
             type={"text"}
             placeholder={"Search by Name"}
@@ -36,7 +61,17 @@ export default function Header() {
           ></input>
           <button>Search</button>
         </form>
-      </div>
+        <form onSubmit={(e) => handelFilter(e)}>
+          <input
+            type={"text"}
+            placeholder={"Filter By Minimum Rating"}
+            onChange={(e) => setRating(e.target.value)}
+          ></input>
+          <button>Search</button>
+        </form>
+        </div>
+        
+      
       <div className="movie_list">
         <div className="list__cards">
           {movieList.map((movie) => (

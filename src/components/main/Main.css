@@ -1,0 +1,23 @@
+.header_title {
+  padding-top: 10px;
+  margin-bottom: 50px;
+  font-size: x-large;
+}
+
+.movie__list {
+  padding: 0 3rem 3rem 3rem;
+}
+
+.list__title {
+  font-size: 1.75rem;
+  margin: 2.5rem;
+}
+
+.list__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+h1 {
+  font-size: larger;
+}

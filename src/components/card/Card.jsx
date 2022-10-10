@@ -28,6 +28,7 @@ export default function Card(movie) {
         className="cards__img"
         style={{ maxWidth: "250px" }}
         src={url + movie.movie.backdrop_path}
+        onError={(e)=>{e.target.onerror = null; e.target.src="https://img.freepik.com/free-vector/cinema-film-festival-movie-poster-background_1017-33461.jpg?w=2000"}}
         alt="Movie Poster"
       />
       <div className="cards__overlay">
@@ -38,7 +39,7 @@ export default function Card(movie) {
             {movie.movie.vote_average} <i className="fas fa-star" />
           </span>
         </div>
-        <div className="card__description">{movie.movie.overview}</div>
+        <div className="card__description">{movie.movie.overview.slice(0,150)+"..."}</div>
       </div>
     </div>
     }

@@ -16,17 +16,18 @@ export default function Main() {
     }
     getMovieList();
 
-  }, [pageNumber, rating]);
+  }, [pageNumber, rating, search]);
 
-  console.log(movieList);
 
   function handelSearch(e) {
+    console.log("handelSearch Called!")
     e.preventDefault();
     fetch(
-      `https://movie-task.vercel.app/api/search?page=${pageNumber}&query=${search}`
+      `https://movie-task.vercel.app/api/search?page=1&query=${search}`
     )
       .then((res) => res.json())
       .then((data) => setMovieList(data.data.results));
+      
   }
 
 

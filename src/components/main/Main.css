@@ -14,9 +14,8 @@
 }
 
 .list__cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 240px 240px 240px 240px 240px;
 }
 h1 {
   font-size: larger;

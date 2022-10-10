@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "./Card.css";
+import { Link } from "react-router-dom";
 
 
 export default function Card(movie) {
@@ -23,6 +24,7 @@ export default function Card(movie) {
     </SkeletonTheme>
 </div>
   :
+  <Link to={`/movie/${movie.movie.id}`} style={{textDecoration:"none", color:"white"}}>
   <div className="cards">
       <img
         className="cards__img"
@@ -42,6 +44,7 @@ export default function Card(movie) {
         <div className="card__description">{movie.movie.overview.slice(0,150)+"..."}</div>
       </div>
     </div>
+    </Link>
     }
     
     

@@ -5,7 +5,7 @@
 }
 
 .movie__list {
-  padding: 0 3rem 3rem 3rem;
+  padding: 0 3rem 3rem 5rem;
 }
 
 .list__title {
@@ -15,6 +15,7 @@
 
 .list__cards {
   display: grid;
+  justify-content: center;
   grid-template-columns: 240px 240px 240px 240px 240px;
 }
 h1 {
